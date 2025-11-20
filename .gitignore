@@ -1,0 +1,14 @@
+player/src/player.css
+player/src/player.html
+player/src/player.js
+player/src/images
+player/src/css
+player/src/style
+player/src/styles
+player/src/js
+player/src/javascript
+player/node_modules
+
+.idea
+.vscode
+config.json
