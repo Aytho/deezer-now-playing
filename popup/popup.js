@@ -1,4 +1,5 @@
 const saveBtn = document.getElementById('saveBtn');
+const copyBtn = document.getElementById('copyBtn');
 
 // Function for polling until servers are active
 function pollUntilActive(maxTime = 60000, interval = 1500) {  // 60 seconds max, check every 1.5 seconds
@@ -24,6 +25,8 @@ function pollUntilActive(maxTime = 60000, interval = 1500) {  // 60 seconds max,
             document.getElementById('status').textContent = 'Restart completed successfully !';
             document.getElementById('status').className = 'status-message success';
             saveBtn.disabled = false;
+            // Update the server url
+            updateWebserverUrl(port);
           } else {
             // Still in progress: continue polling
             setServerStatus('Restarting...', 'Restarting...', 'restarting', 'restarting');
@@ -81,11 +84,18 @@ function checkServerStatus() {
   });
 }
 
+// Function to update the displayed web server URL
+function updateWebserverUrl(port) {
+  const sourceURLInput = document.getElementById("sourceURL");
+  sourceURLInput.value = `http://localhost:${port}`;
+}
+
 // When loading the popup (unchanged)
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(['webserverPort', 'websocketPort'], (result) => {
     document.getElementById('webserverPort').value = result.webserverPort || 3000;
     document.getElementById('websocketPort').value = result.websocketPort || 8080;
+    updateWebserverUrl(result.webserverPort);
   });
 
   checkServerStatus();
@@ -134,6 +144,7 @@ saveBtn.addEventListener('click', () => {
 
           // Save locally after successful sending
           chrome.storage.sync.set(config, () => {
+
             // Start smart polling
             pollUntilActive();
           });
@@ -152,3 +163,20 @@ saveBtn.addEventListener('click', () => {
       });
   });
 });
+
+copyBtn.addEventListener('click', () => {
+  const sourceURLInput = document.getElementById("sourceURL");
+  // Select the text field
+  sourceURLInput.select();
+  sourceURLInput.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(sourceURLInput.value).then(() => {
+    copyBtn.classList.add('copied')
+    setTimeout(() => {
+      copyBtn.classList.remove('copied');
+    }, 2000)
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+  });
+})

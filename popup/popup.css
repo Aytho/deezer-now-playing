@@ -145,6 +145,39 @@ button:disabled {
   margin-bottom: 8px;
 }
 
+.server-url-section {
+  border-bottom: 1px solid #e0e0e0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.server-url-section label {
+  text-align: start;
+}
+
+.url-container {
+  display: flex;
+  gap: 8px;
+}
+
+.url-container input {
+  font-size: 13px;
+  flex: 1;
+}
+
+.url-container button {
+  padding: 8px;
+  margin: 0;
+  height: 40px;
+  width: 40px;
+}
+
+.url-container button svg {
+  width: 16px;
+  height: 16px;
+}
+
 .label {
   font-weight: 500;
   color: #fff;
