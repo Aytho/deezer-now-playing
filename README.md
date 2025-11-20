@@ -41,7 +41,7 @@ The server remains active as long as the script is running. Close the terminal o
 1. Open your Chrome browser and go to [deezer.com](https://www.deezer.com).
 2. Start playing a track on Deezer. The extension will automatically detect the track information (title, artist, cover, progress, etc.) and transmit it via WebSocket.
 3. Open OBS Studio.
-4. Add a new source: Click the "+" button in the sources, select "Browser" (or "Browser Source" in English).
+4. Add a new source: Click the "+" button in the sources, select "Browser".
 5. In the source settings:
     - URL: `http://localhost:3000`
     - Width and height: Adjust as needed (for example, 800x600).
