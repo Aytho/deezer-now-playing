@@ -28,6 +28,7 @@ Once installed, the extension icon will appear in Chrome's toolbar.
     - `player-example.css` to `player.css`
 
 These files contain a basic example of the web player. You can modify them later to customize the appearance and behavior (for example, change CSS styles or add JavaScript features).
+Be sure to check the links to the js and css files in the player.html file.
 
 ## 3. Installing Dependencies and Starting the Server
 There is a `run.bat` script included in the project to handle the installation of dependencies and starting the servers automatically.
