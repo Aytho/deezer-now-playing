@@ -31,12 +31,13 @@ These files contain a basic example of the web player. You can modify them later
 Be sure to check the links to the js and css files in the player.html file.
 
 ## 3. Installing Dependencies and Starting the Server
-There is a `run.bat` script included in the project to handle the installation of dependencies and starting the servers automatically.
+There is a `launch.vbs` script included in the project to handle the installation of dependencies, starting the servers automatically and start a system tray icon.
 
-1. Double-click on `run.bat` (on Windows) or run it via terminal on other systems.
-2. This script will install the necessary Node.js dependencies (like Express and WebSocket) and start the local web server (on port 3000 by default) and the WebSocket server (on port 8080 by default). You will see confirmation messages, such as "HTTP server started on http://localhost:3000".
+1. Double-click on `launch.vbs` (on Windows).
+2. This script will install the necessary Node.js dependencies (like Express and WebSocket) and start the local web server (on port 3000 by default) and the WebSocket server (on port 8080 by default).
+3. The system tray icon will appear in the notification area.
 
-The server remains active as long as the script is running. Close the terminal or script to stop the server.
+If you want to close the service, right-click on the icon and select "Quit".
 
 ## 4. Usage with Deezer and OBS
 1. Open your Chrome browser and go to [deezer.com](https://www.deezer.com).
@@ -49,7 +50,13 @@ The server remains active as long as the script is running. Close the terminal o
     - Check "Shutdown source when not visible" if you don't want duplicate audio.
 6. Click "OK". The web player should now display in OBS, showing the information of the current track on Deezer.
 
-The player will update in real-time thanks to the extension.
+If you want to automatically start the Deezer Now Playing player, you can add a `deezer-now-playing.lua` script to OBS.
+1. Go to "Tools > Scripts".
+2. Click on "+" button to create a new script.
+3. Copy and paste the `deezer-now-playing.lua` file into the folder opened.
+4. Select the script and click "Open".
+5. Click on "Browse" in the script settings at `Path to launch.vbs` and select the `launch.vbs` path.
+5. You can close and the script will be automatically started when you open OBS.
 
 ## 5. Advanced Configuration (Changing Ports)
 By default, the web server uses port 3000 and the WebSocket uses port 8080. To change them:
@@ -64,7 +71,7 @@ The ports are saved in a `config.json` file at `player` folder. You can edit the
 ## Troubleshooting
 - **Port already in use error:** Make sure no other service is using ports 3000 or 8080. Change them via the extension if needed.
 - **Extension not detected:** Check that the extension is enabled and that you are on deezer.com.
-- **Player not updating:** Restart the server using `run.bat` and refresh the Deezer page.
+- **Player not updating:** Restart the server using `launch.vbs` and refresh the Deezer page.
 - **Node.js issues:** Check the version with `node -v` and `npm -v`. Reinstall if necessary.
 
 If you encounter issues, check the logs in the terminal console or Chrome's developer tools (F12 > Console).

@@ -1,10 +1,7 @@
-// Keep the service worker alive with an alarm every 20 seconds
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.alarms.create('keepAlive', { periodInMinutes: 0.33 }); // every ~20 seconds
-});
+chrome.alarms.create("keepalive", { periodInMinutes: 0.4 }); // every 24 seconds
 
 chrome.alarms.onAlarm.addListener((alarm) => {
-  if (alarm.name === 'keepAlive') {
+  if (alarm.name === "keepalive") {
     // Just waking up the service worker, nothing to do
   }
 });
